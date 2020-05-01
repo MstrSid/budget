@@ -15,7 +15,7 @@ const commitExpBtn = document.getElementsByTagName('button')[0];
 const commitOptExpBtn = document.getElementsByTagName('button')[1];
 const calcBtn = document.getElementsByTagName('button')[2];
 
-const optionalexpensesItem = document.querySelectorAll('.optionalexpenses-item');
+const optionalexpensesInp = document.querySelectorAll('.optionalexpenses-item');
 const incomeInp = document.querySelector('#income');
 const savingsChk = document.querySelector('#savings');
 const sumInp = document.querySelector('#sum');
@@ -153,14 +153,17 @@ commitExpBtn.addEventListener('click', function () {
 });
 
 commitOptExpBtn.addEventListener('click', function () {
-	for (let i = 0; i < 3; i++) {
-		const expOptName = prompt('Введите необязательную статью расходов', '');
-		const expOptSum = +prompt('Введите сумму', '');
+	let sum = 0;
+	for (let i = 0; i < optionalexpensesInp.length; i++) {
+		let expOptName = optionalexpensesInp[i].value,
+			expOptSum = +optionalexpensesInp[++i].value;
 		if (typeof (expOptName) === 'string' && expOptName != null && expOptSum != null &&
 			expOptName != '' && typeof (expOptSum) === 'number' && expOptName.length < 50) {
 			appData.aOptionalExpenses[expOptName] = expOptSum;
+			sum += +expOptSum;
 		} else {
 			i--;
 		}
+		optionalexpensesValue.textContent = sum;
 	}
 });

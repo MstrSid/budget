@@ -1,3 +1,6 @@
+/* eslint-disable indent */
+/* eslint-disable no-undef */
+/* eslint-disable quotes */
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const sass = require('gulp-sass');
@@ -50,7 +53,6 @@ gulp.task('styles', function () {
 
 
 gulp.task('watch', function () {
-    gulp.watch('src/*.html').on('change', browserSync.reload);
     gulp.watch('src/sass/**/*.+(scss|sass|css)').on('change', browserSync.reload);
     gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
     gulp.watch('src/fonts/**/*').on('change', browserSync.reload);
