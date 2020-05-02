@@ -1,6 +1,7 @@
 @import 'variables'
-.p
-    color: black
+@import 'media'
+@import 'animate'
+
 *
     box-sizing: border-box
     margin: 0
@@ -25,6 +26,10 @@ a
 	&:active
 		text-decoration: none
 		color:inherit
+
+form
+    width: 50%
+
 .app
     background-color: #faf8f5
     min-height: 800px
@@ -49,13 +54,17 @@ a
     margin: 0% 10%
     padding-top: 40px
 .data
-    .choose-expenses, .optionalexpenses, .count-budget, .choose-income-label
+    display: flex
+    align-items: flex-start
+    .choose-expenses, .optionalexpenses, .count-budget, .start-money, .income
         @include header
-    .expenses-item, .optionalexpenses-item, .choose-income, .choose-sum, .choose-percent
+    .expenses-item, .optionalexpenses-item, .choose-income, .choose-sum, .choose-percent, .date-item, .money-item, .income-item
         @include input
         &::placeholder
             opacity: .3
-    .expenses-item-btn, .optionalexpenses-btn, .count-budget-btn
+        &-error
+            @include input-error
+    .expenses-item-btn, .optionalexpenses-btn, .count-budget-btn, .income-btn, #add-exp, #add-optexp, #add-inc
         @include btn
     .count-budget-btn
         width: 120px
@@ -85,20 +94,23 @@ a
         display: flex
         flex-wrap: wrap
         justify-content: space-between
-        width: 90%
+        width: 95%
         min-height: 400px
         margin: 0 auto
         margin-top: 42px
         padding: 25px
         background-color: #fff
         box-shadow: 0px 1.5px 20px 0 rgba(1, 0, 42, 0.1)
-        .budget, .budget-value, .daybudget, .daybudget-value, .level, .level-value, .expenses, .expenses-value, .optionalexpenses, .optionalexpenses-value, .income, .income-value, .monthsavings, .monthsavings-value, .yearsavings, .yearsavings-value
+        .budget, .budget-value, .daybudget, .daybudget-value, .level, .level-value, .expenses, .expenses-name, .expenses-value, .expenses-name-value, .optionalexpenses, .optionalexpenses-name, .optionalexpenses-value, .optionalexpenses-name-value, .income, .income-value, .income-name, .income-name-value, .monthsavings, .monthsavings-value, .yearsavings, .yearsavings-value 
             width: 48%
             margin-top: 10px
             min-height: 40px
             padding: 10px
             font-weight: 500
-        .budget-value, .daybudget-value, .level-value, .expenses-value, .optionalexpenses-value, .income-value, .monthsavings-value, .yearsavings-value
+            font-size: 16px
+            text-align: left
+            margin-bottom: 0
+        .budget-value, .daybudget-value, .level-value, .expenses-value, .expenses-name-value, .optionalexpenses-value, .optionalexpenses-name-value, .income-value, .income-name-value, .monthsavings-value, .yearsavings-value
             color: $result
             word-break: break-word
     .time-data
@@ -110,8 +122,23 @@ a
         .year, .month, .day 
             font-size: 16px
             font-weight: 500
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: center
+            text-align: center
         .year-value, .month-value, .day-value
             @include input
             width: 80px
             height: 30px
-            margin-left: 25px
+            margin-top: 10px
+
+
+.wrapper
+    &-exp, &-start, &-optexp, &-inc
+        max-width: 100%
+        display: flex
+        flex-wrap: wrap
+.btns
+    display: flex
+    justify-content: space-between
